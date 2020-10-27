@@ -1,5 +1,5 @@
 # arma3-be
-Connects to your battleye on arma 3.
+Connects to your arma 3 server's battleye on arma 3.
 
 ## Requirements
 - [Node.JS](https://nodejs.dev/)
@@ -41,7 +41,7 @@ The config must be an object.
 ### arma3_be.SendCommand(Command)
 This function is to send a battleye command to your server. <br />
 The command must be a string. <br />
-See [Battleye Documentation](https://www.battleye.com/support/documentation/) for a list commands.
+See [Battleye Documentation](https://www.battleye.com/support/documentation/) for a list of commands.
 ```javascript
 //This command will globaly message players with "Hello world!"
 arma3_be.SendCommand("say -1 Hello world!").then(() => {
