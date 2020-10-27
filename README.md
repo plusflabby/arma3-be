@@ -1,5 +1,5 @@
 # arma3-be
-Connects to your arma 3 server's battleye on arma 3.
+Connects to your arma 3 server's battleye.
 
 ## Requirements
 - [Node.JS](https://nodejs.dev/)
