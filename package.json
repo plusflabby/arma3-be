@@ -1,0 +1,24 @@
+{
+  "name": "arma3-be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "example": "node example/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plusflabby/arma3-be.git"
+  },
+  "keywords": [
+    "Arma3",
+    "Arma",
+    "BE",
+    "Battleye"
+  ],
+  "author": "+Flabby",
+  "license": "ISC",
+  "dependencies": {
+    "battle-node": "^0.1.2"
+  }
+}
