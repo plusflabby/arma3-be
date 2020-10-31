@@ -54,5 +54,12 @@ arma3_be.SendCommand("players").then((response) => {
 })
 ```
 
-## To-Do List
-- Hardcode a function to retrieve server messages
+### arma3_be.Messages.on("message", function)
+This function will listen for server messages and output them to your console. <br />
+Note the parameter function will run for every message sent.
+```javascript
+//This command will log out each message to the console
+arma3_be.Messages.on("message", (message) => {
+    console.log(message)
+})
+```
