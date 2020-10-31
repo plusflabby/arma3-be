@@ -18,3 +18,8 @@ arma3_be.SendCommand("players").then((response) => {
 arma3_be.SendCommand("say -1 Hello world!").then(() => {
     console.log("Successfully sent message!")
 })
+
+//Logs out battleye messages to console
+arma3_be.Messages.on("message", (message) => {
+    console.log(message)
+})

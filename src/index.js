@@ -1,7 +1,9 @@
 const BE_Node = require("battle-node")
+const events = require('events')
 let BE = null
 let Debug = false
 let RetryOnFailedAttempt = true
+const BE_Messages = new events.EventEmitter()
 
 function reconnect(Config) {
     if (BE !== null) {
@@ -18,7 +20,7 @@ function reconnect(Config) {
                     reconnect(BE_Config)
                 }
                 else if (success == true) {
-                    if (Debug === true) console.log('Logged in RCON successfully.')
+                    if (Debug === true) console.log('Logged in to RCON successfully.')
                 }
                 else if (success == false) {
                     if (Debug === true) console.log('RCON login failed! The password may be incorrect. Retrying..')
@@ -29,6 +31,10 @@ function reconnect(Config) {
             BE.on('disconnected', function() {
                 if (Debug === true) console.log('RCON server disconnected. Retrying..')
                 reconnect(BE_Config)
+            })
+    
+            BE.on('message', function(message) {
+                BE_Messages.emit("message", message)
             })
         }, 10000)
     }
@@ -66,12 +72,16 @@ module.exports.Config = (Config) => {
                     if (RetryOnFailedAttempt === true) reconnect(BE_Config)
                 }
                 else if (success == true) {
-                    if (Debug === true) console.log('Logged in RCON successfully.')
+                    if (Debug === true) console.log('Logged in to RCON successfully.')
                 }
                 else if (success == false) {
                     console.log('RCON login failed! The password may be incorrect. Retrying..')
                     if (RetryOnFailedAttempt === true) reconnect(BE_Config)
                 }
+            })
+    
+            BE.on('message', function(message) {
+                BE_Messages.emit("message", message)
             })
         }
     })
@@ -89,3 +99,5 @@ module.exports.SendCommand = (Command) => {
         })
     }
 }
+
+module.exports.Messages = BE_Messages
