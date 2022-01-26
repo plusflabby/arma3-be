@@ -1,5 +1,12 @@
 declare module 'arma3-be' {
-    export function Config(Config: object): void
+    interface config {
+        IP: string,
+        Port: string,
+        Password: string,
+        Debug: boolean,
+        RetryOnFailedAttempt: boolean
+    }
+    export function Config(Config: config): void
     export function SendCommand(Command: string): Promise<any>
     export type Messages = any;
 }
