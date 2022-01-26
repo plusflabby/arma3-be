@@ -14,6 +14,8 @@ Connects to your arma 3 server's battleye.
 Add this to the top of your file
 ```javascript
 const arma3_be = require("arma3-be")
+OR
+import arma3_be from 'arma3_be'
 ```
 ### RCon
 Add this function to your file and change the key values.
