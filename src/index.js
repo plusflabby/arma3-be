@@ -98,4 +98,6 @@ module.exports.SendCommand = (Command) => {
     }
 }
 
-module.exports.Messages = BE_Messages
+module.exports.onMessageCallback = (callback) => {
+    BE_Messages.on("message", callback);
+}

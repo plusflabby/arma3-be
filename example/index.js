@@ -20,6 +20,6 @@ arma3_be.SendCommand("say -1 Hello world!").then(() => {
 })
 
 //Logs out battleye messages to console
-arma3_be.Messages.on("message", (message) => {
-    console.log(message)
+arma3_be.onMessageCallback((msg) => {
+    console.log(msg)
 })

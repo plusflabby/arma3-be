@@ -8,5 +8,5 @@ declare module 'arma3-be' {
     }
     export function Config(Config: config): void
     export function SendCommand(Command: string): Promise<any>
-    export type Messages = any;
+    export function onMessageCallback(callback: Function): void
 }

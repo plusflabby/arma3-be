@@ -56,12 +56,12 @@ arma3_be.SendCommand("players").then((response) => {
 })
 ```
 
-### arma3_be.Messages.on("message", function)
-This function will listen for server messages and output them to your console. <br />
+### arma3_be.onMessageCallback(Function)
+This function will listen for server messages and output them to your callback. <br />
 Note the parameter function will run for every message sent.
 ```javascript
 //This command will log out each message to the console
-arma3_be.Messages.on("message", (message) => {
-    console.log(message)
+arma3_be.onMessageCallback((msg) => {
+    console.log(msg)
 })
 ```
