@@ -4,6 +4,7 @@ let BE = null
 let Debug = false
 let RetryOnFailedAttempt = true
 const BE_Messages = new events.EventEmitter()
+let ONLINE = false;
 
 function reconnect(Config) {
     if (BE !== null) {
@@ -18,18 +19,22 @@ function reconnect(Config) {
                 if (err) {
                     if (Debug === true) console.log('Unable to reconnect to server. Check IP & Port. Retrying..')
                     reconnect(BE_Config)
+                    ONLINE = false;
                 }
                 else if (success == true) {
                     if (Debug === true) console.log('Logged in to RCON successfully.')
+                    ONLINE = true;
                 }
                 else if (success == false) {
                     if (Debug === true) console.log('RCON login failed! The password may be incorrect. Retrying..')
                     reconnect(BE_Config)
+                    ONLINE = false;
                 }
             })
     
             BE.on('disconnected', function() {
                 if (Debug === true) console.log('RCON server disconnected. Retrying..')
+                ONLINE = false;
                 reconnect(BE_Config)
             })
     
@@ -63,19 +68,23 @@ module.exports.Config = (Config) => {
         BE.on('disconnected', function() {
             if (Debug === true) console.log('RCON server disconnected. Retrying..')
             if (RetryOnFailedAttempt === true) reconnect(BE_Config)
+            ONLINE = false;
         })
 
         BE.on('login', function(err, success) {
             if (err) {
                 console.log('Unable to connect to server. Check IP & Port. Retrying..')
                 if (RetryOnFailedAttempt === true) reconnect(BE_Config)
+                ONLINE = false;
             }
             else if (success == true) {
                 if (Debug === true) console.log('Logged in to RCON successfully.')
+                ONLINE = true;
             }
             else if (success == false) {
                 console.log('RCON login failed! The password may be incorrect. Retrying..')
                 if (RetryOnFailedAttempt === true) reconnect(BE_Config)
+                ONLINE = false;
             }
         })
 
@@ -101,3 +110,5 @@ module.exports.SendCommand = (Command) => {
 module.exports.onMessageCallback = (callback) => {
     BE_Messages.on("message", callback);
 }
+
+module.exports.ONLINE = ONLINE;

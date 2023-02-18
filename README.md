@@ -28,7 +28,9 @@ arma3_be.Config({
     RetryOnFailedAttempt: true
 })
 ```
-
+## Variables
+### arma3_be.ONLINE
+This variable is updated when server is connected to rcon successfully.
 ## Functions
 ### arma3_be.Config(Config)
 This function is to attempt to setup a connection to your battleye service on your arma 3 server. <br />
