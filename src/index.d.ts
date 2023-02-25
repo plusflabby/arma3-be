@@ -10,4 +10,5 @@ declare module 'arma3-be' {
     export function SendCommand(Command: string): Promise<any>
     export function onMessageCallback(callback: Function): void
     export let ONLINE: boolean;
+    export let TIMEOUT: number;
 }

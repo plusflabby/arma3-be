@@ -5,6 +5,7 @@ let Debug = false
 let RetryOnFailedAttempt = true
 const BE_Messages = new events.EventEmitter()
 let ONLINE = false;
+let timeout = 3000;
 
 function reconnect(Config) {
     if (BE !== null) {
@@ -41,7 +42,7 @@ function reconnect(Config) {
             BE.on('message', function(message) {
                 BE_Messages.emit("message", message)
             })
-        }, 10000)
+        }, timeout)
     }
 }
 
@@ -78,7 +79,7 @@ module.exports.Config = (Config) => {
                 ONLINE = false;
             }
             else if (success == true) {
-                if (Debug === true) console.log('Logged in to RCON successfully.')
+                console.log('Logged in to RCON successfully.')
                 ONLINE = true;
             }
             else if (success == false) {
@@ -112,3 +113,4 @@ module.exports.onMessageCallback = (callback) => {
 }
 
 module.exports.ONLINE = ONLINE;
+module.exports.TIMEOUT = timeout;
